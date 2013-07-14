@@ -44,6 +44,7 @@ def calendar(code):
 	cal = Calendar()
 	cal.add('prodid', '-//Eventbrite calendar//tevp.net//')
 	cal.add('version', '2.0')
+	cal.add('X-WR-CALNAME', 'Eventbrite Calendar for %s'%(data["user_tickets"][0]["user"]["email"]))
 
 	for order in data["user_tickets"][1]["orders"]:
 		order = order["order"]
