@@ -54,9 +54,10 @@ def calendar(code):
 		venue = ", ".join([order["event"]["venue"][k] for k in ("address", "address_2", "city", "postal_code")])
 		event.add('location', venue)
 		dformat = "%Y-%m-%d %H:%M:%S"
-		event.add('dtstart', datetime.strptime(order["event"]["start_date"], dformat))
-		event.add('dtend', datetime.strptime(order["event"]["end_date"], dformat))
-		event.add('dtstamp', datetime.strptime(order["modified"], dformat))
+		tz = pytz.timezone(order["event"]["timezone"])
+		event.add('dtstart', datetime.strptime(order["event"]["start_date"], dformat).replace(tzinfo=tz))
+		event.add('dtend', datetime.strptime(order["event"]["end_date"], dformat).replace(tzinfo=tz))
+		event.add('dtstamp', datetime.strptime(order["modified"], dformat).replace(tzinfo=tz))
 		event['uid'] = order["id"]
 		cal.add_component(event)
 
