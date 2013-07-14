@@ -4,10 +4,9 @@
 {% block body_content %}
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit span8 offset2">
 				<h1>Eventbrite calendar</h1>
-				<a href="" class="btn btn-large btn-block btn-primary" type="button">Login to Eventbrite</a>
+				<a href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id={{eventbrite_api_key}}" class="btn btn-large btn-block btn-primary" type="button">Login to Eventbrite</a>
 			</div>
 		</div>
 	</div>
