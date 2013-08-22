@@ -44,23 +44,26 @@ def calendar(code):
 	cal = Calendar()
 	cal.add('prodid', '-//Eventbrite calendar//tevp.net//')
 	cal.add('version', '2.0')
-	cal.add('X-WR-CALNAME', 'Eventbrite Calendar for %s'%(data["user_tickets"][0]["user"]["email"]))
+	if "user_tickets" in data:
+		cal.add('X-WR-CALNAME', 'Eventbrite Calendar for %s'%(data["user_tickets"][0]["user"]["email"]))
 
-	for order in data["user_tickets"][1]["orders"]:
-		order = order["order"]
-		event = Event()
-		print order.keys()
-		event.add('summary', order["event"]["title"])
-		event.add('description', order["event"]["description"])
-		venue = ", ".join([order["event"]["venue"][k] for k in ("address", "address_2", "city", "postal_code")])
-		event.add('location', venue)
-		dformat = "%Y-%m-%d %H:%M:%S"
-		tz = pytz.timezone(order["event"]["timezone"])
-		event.add('dtstart', datetime.strptime(order["event"]["start_date"], dformat).replace(tzinfo=tz))
-		event.add('dtend', datetime.strptime(order["event"]["end_date"], dformat).replace(tzinfo=tz))
-		event.add('dtstamp', datetime.strptime(order["modified"], dformat).replace(tzinfo=tz))
-		event['uid'] = order["id"]
-		cal.add_component(event)
+		for order in data["user_tickets"][1]["orders"]:
+			order = order["order"]
+			event = Event()
+			print order.keys()
+			event.add('summary', order["event"]["title"])
+			event.add('description', order["event"]["description"])
+			venue = ", ".join([order["event"]["venue"][k] for k in ("address", "address_2", "city", "postal_code")])
+			event.add('location', venue)
+			dformat = "%Y-%m-%d %H:%M:%S"
+			tz = pytz.timezone(order["event"]["timezone"])
+			event.add('dtstart', datetime.strptime(order["event"]["start_date"], dformat).replace(tzinfo=tz))
+			event.add('dtend', datetime.strptime(order["event"]["end_date"], dformat).replace(tzinfo=tz))
+			event.add('dtstamp', datetime.strptime(order["modified"], dformat).replace(tzinfo=tz))
+			event['uid'] = order["id"]
+			cal.add_component(event)
+	else:
+		cal.add('X-WR-CALNAME', 'Eventbrite Calendar')
 
 	return cal.to_ical()
 
