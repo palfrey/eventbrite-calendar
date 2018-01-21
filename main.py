@@ -36,30 +36,29 @@ def oauth(code):
 
 @app.route('/calendar/<code>')
 def calendar(code):
-	url = "https://www.eventbrite.com/json/user_list_tickets?type=all"
-	print url
+	url = "https://www.eventbriteapi.com/v3/users/me/orders/?expand=event,event.venue"
 	data = urlopen(Request(url = url, headers= {"Authorization": "Bearer %s"%code})).read()
 	data = json.loads(data)
+	if "error" in data:
+		raise Exception(data["error"])
 
 	cal = Calendar()
 	cal.add('prodid', '-//Eventbrite calendar//tevp.net//')
 	cal.add('version', '2.0')
-	if "user_tickets" in data:
-		cal.add('X-WR-CALNAME', 'Eventbrite Calendar for %s'%(data["user_tickets"][0]["user"]["email"]))
+	if "orders" in data:
+		cal.add('X-WR-CALNAME', 'Eventbrite Calendar for %s'%(data["orders"][0]["email"]))
 
-		for order in data["user_tickets"][1]["orders"]:
-			order = order["order"]
+		for order in data["orders"]:
+			event_data = order["event"]
 			event = Event()
-			print order.keys()
-			event.add('summary', order["event"]["title"])
-			event.add('description', order["event"]["description"])
-			venue = ", ".join([order["event"]["venue"][k] for k in ("address", "address_2", "city", "postal_code")])
-			event.add('location', venue)
-			dformat = "%Y-%m-%d %H:%M:%S"
-			tz = pytz.timezone(order["event"]["timezone"])
-			event.add('dtstart', datetime.strptime(order["event"]["start_date"], dformat).replace(tzinfo=tz))
-			event.add('dtend', datetime.strptime(order["event"]["end_date"], dformat).replace(tzinfo=tz))
-			event.add('dtstamp', datetime.strptime(order["modified"], dformat).replace(tzinfo=tz))
+			event.add('summary', event_data["name"]["text"])
+			event.add('description', event_data["description"]["text"])
+			event.add('location', event_data["venue"]["address"]["localized_address_display"])
+			dformat = "%Y-%m-%dT%H:%M:%SZ"
+			utc = pytz.timezone("UTC")
+			event.add('dtstart', datetime.strptime(event_data["start"]["utc"], dformat).replace(tzinfo=utc))
+			event.add('dtend', datetime.strptime(event_data["end"]["utc"], dformat).replace(tzinfo=utc))
+			event.add('dtstamp', datetime.strptime(event_data["changed"], dformat).replace(tzinfo=utc))
 			event['uid'] = order["id"]
 			cal.add_component(event)
 	else:
