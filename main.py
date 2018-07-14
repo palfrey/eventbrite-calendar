@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect
-from flask.ext.bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap
 from urllib.request import urlopen, Request
 from urllib.parse import urlencode
 import json
