@@ -4,4 +4,4 @@ sudo: false
 python:
   - "3.6"
 script:
-  - pytest
+  - python -m pytest

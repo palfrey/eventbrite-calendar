@@ -11,6 +11,7 @@ def client(monkeypatch):
     default_env_key(monkeypatch, "EVENTBRITE_API_KEY", "foo")
     default_env_key(monkeypatch, "EVENTBRITE_OAUTH_SECRET", "wibble")
     default_env_key(monkeypatch, "EVENTBRITE_OAUTH_CODE", "bar")
+
     import main as calendar
     calendar.app.config['TESTING'] = True
     client = calendar.app.test_client()
