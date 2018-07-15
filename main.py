@@ -30,7 +30,7 @@ def oauth(code):
 		"code": code,
 		"client_secret": os.environ["EVENTBRITE_OAUTH_SECRET"],
 		"client_id": eventbrite_api_key,
-		"grant_type": "authorization_code"}))
+		"grant_type": "authorization_code"}).encode('utf-8'))
 	values = json.loads(data.read())
 	return redirect("/calendar/%s"%values["access_token"])
 
