@@ -27,7 +27,21 @@ def test_oauth_redirect(client):
     assert rv.status_code == 302
     assert rv.headers["location"] == "http://localhost/oauth/bar"
 
-@vcr.use_cassette(cassette_library_dir="test/cassettes/", record_mode=os.environ.get("VCRPY_RECORD_MODE", "none"))
+def scrub_request_oauth(request):
+    if request.path == '/oauth/token':
+        request.body = ''
+    return request
+
+@vcr.use_cassette(
+    cassette_library_dir="test/cassettes/",
+    record_mode=os.environ.get("VCRPY_RECORD_MODE", "none"),
+    filter_post_data_parameters=['access_token'],
+    filter_headers=['authorization'],
+    before_record_request=scrub_request_oauth)
 def test_oauth(client):
     rv = client.get(f'/oauth/{os.environ["EVENTBRITE_OAUTH_CODE"]}')
     assert rv.status_code == 302
+    assert rv.headers["location"].startswith("http://localhost/calendar/")
+
+    rv = client.get(rv.headers["location"])
+    assert rv.status_code == 200
