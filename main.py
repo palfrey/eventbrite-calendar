@@ -1,8 +1,8 @@
 import os
 from flask import Flask, render_template, request, redirect
-from flask.ext.bootstrap import Bootstrap
-from urllib2 import urlopen, Request
-from urllib import urlencode
+from flask_bootstrap import Bootstrap
+from urllib.request import urlopen, Request
+from urllib.parse import urlencode
 import json
 from icalendar import Calendar, Event
 import pytz
@@ -19,7 +19,7 @@ eventbrite_api_key = os.environ["EVENTBRITE_API_KEY"]
 
 @app.route('/')
 def index():
-	if request.args.has_key("code"):
+	if "code" in request.args:
 		return redirect("/oauth/%s" % request.args["code"])
 	return render_template('index.html', eventbrite_api_key = eventbrite_api_key)
 
@@ -30,7 +30,7 @@ def oauth(code):
 		"code": code,
 		"client_secret": os.environ["EVENTBRITE_OAUTH_SECRET"],
 		"client_id": eventbrite_api_key,
-		"grant_type": "authorization_code"}))
+		"grant_type": "authorization_code"}).encode('utf-8'))
 	values = json.loads(data.read())
 	return redirect("/calendar/%s"%values["access_token"])
 
