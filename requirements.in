@@ -6,3 +6,4 @@ pytz
 
 pip-tools
 pytest
+vcrpy

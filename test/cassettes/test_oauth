@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: code=2TNN2IWEYIX5FBEWTHVR&client_secret=542LHTTPXZRSKZP4SCJM2KP35IJSWU6YRL64AJEDCMSMY27DEJ&client_id=FYI25WJFZ6YD4XXMXB&grant_type=authorization_code
+    headers:
+      Connection: [close]
+      Content-Length: ['149']
+      Content-Type: [application/x-www-form-urlencoded]
+      Host: [www.eventbrite.com]
+      User-Agent: [Python-urllib/3.6]
+    method: POST
+    uri: https://www.eventbrite.com/oauth/token
+  response:
+    body: {string: '{"access_token":"7XM2FCE5JZFH65X5UH2G","token_type":"bearer"}'}
+    headers:
+      Connection: [close]
+      Content-Type: [application/json]
+      Date: ['Sun, 15 Jul 2018 14:31:50 GMT']
+      P3P: [CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"]
+      Server: [nginx]
+      Set-Cookie: ['mgrefby=; Domain=.eventbrite.com; expires=Mon, 15-Jul-2019 14:31:50
+          GMT; httponly; Max-Age=31536000; Path=/; secure', 'G=v%3D2%26i%3D0319f795-6fb9-40e4-a325-0bf2e8dbcea1%26a%3Da48%26s%3D4f471d8dfe62ecc874903c36ea1f839c14178565;
+          Domain=.eventbrite.com; expires=Mon, 15-Jul-2019 14:31:50 GMT; httponly;
+          Path=/; secure', 'ebEventToTrack=; Domain=.eventbrite.com; expires=Tue,
+          14-Aug-2018 14:31:50 GMT; httponly; Path=/; secure', SS=AE3DLHTqOCu7Du-wgUJtdwWS9jL8Jzk6lA;
+          Domain=.eventbrite.com; httponly; Path=/; secure, 'eblang=lo%3Den_US%26la%3Den-us;
+          Domain=.eventbrite.com; expires=Mon, 15-Jul-2019 14:31:50 GMT; httponly;
+          Path=/; secure', 'AN=; Domain=.eventbrite.com; expires=Tue, 14-Aug-2018
+          14:31:50 GMT; httponly; Path=/; secure', AS=a85dc58f-5e46-4ce8-bc47-df86b3c95efa;
+          Domain=.eventbrite.com; httponly; Path=/; secure, 'mgref=typeins; Domain=.eventbrite.com;
+          expires=Mon, 15-Jul-2019 14:31:50 GMT; httponly; Max-Age=31536000; Path=/;
+          secure', SP=AGQgbbmd9LElP-f0zpcMmM6W-QIJr5krbLFrtylsmeLYuIf-Xd5hMS7TppSlyEPaRbcWn_hGk6izJS5XsxsaDts9XNBChf4G9FnJ4lu-yJAIeU28tHU0eYkd8Ayx_qOn4O-oiP5JdjRJF7R0E2Agh5L5KyeQBrdQ2sYf3n0GBu57MJaRxIohjYE8lC3anWAnN-BcbxWXAcJejnqo36yS8lbWa-U24n9ggpRDu62GjAmM9Tew5BmoX-0;
+          Domain=.eventbrite.com; httponly; Path=/; secure, SERVERID=djc15; path=/;
+          HttpOnly; Secure]
+      Strict-Transport-Security: [max-age=31536000 ; includeSubDomains]
+      X-Frame-Options: [SAMEORIGIN]
+      X-UA-Compatible: [IE=edge]
+      x-content-type-options: [nosniff]
+      x-xss-protection: [1; mode=block]
+    status: {code: 200, message: OK}
+version: 1
