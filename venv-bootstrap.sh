@@ -1,2 +1,2 @@
 #!/bin/sh
-virtualenv venv --distribute
+virtualenv -p python3 venv
