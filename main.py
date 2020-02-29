@@ -59,6 +59,8 @@ def calendar(code):
 			event.add('dtstart', datetime.strptime(event_data["start"]["utc"], dformat).replace(tzinfo=utc))
 			event.add('dtend', datetime.strptime(event_data["end"]["utc"], dformat).replace(tzinfo=utc))
 			event.add('dtstamp', datetime.strptime(event_data["changed"], dformat).replace(tzinfo=utc))
+			if "url" in event_data:
+				event.add('url', event_data["url"])
 			event['uid'] = order["id"]
 			cal.add_component(event)
 	else:
