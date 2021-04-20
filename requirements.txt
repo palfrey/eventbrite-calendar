@@ -42,7 +42,7 @@ pip-tools==2.0.2
     # via -r requirements.in
 pluggy==0.6.0
     # via pytest
-py==1.5.4
+py==1.10.0
     # via pytest
 pytest==3.6.3
     # via -r requirements.in
