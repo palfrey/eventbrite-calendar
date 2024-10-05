@@ -1,0 +1,8 @@
+---
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    links:
+      - web
