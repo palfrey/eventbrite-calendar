@@ -17,7 +17,7 @@ app.config['BOOTSTRAP_FONTAWESOME'] = True
 
 eventbrite_api_key = os.environ["EVENTBRITE_API_KEY"]
 
-@app.route('/')
+@app.route('/', endpoint="index")
 def index():
 	if "code" in request.args:
 		return redirect("/oauth/%s" % request.args["code"])

@@ -30,7 +30,7 @@
 					<img src="{{ url_for("static", filename="google-add-by-url.png")}}" />
 					</li>
 				</ol>
-				<a href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id={{eventbrite_api_key}}" class="btn btn-lg btn-block btn-primary" type="button">Login to Eventbrite</a>
+				<a href="https://www.eventbrite.com/oauth/authorize?response_type=code&client_id={{eventbrite_api_key}}&redirect_uri={{ url_for("index", _external=True) }}" class="btn btn-lg btn-block btn-primary" type="button">Login to Eventbrite</a>
 			</div>
 		</div>
 		<div class="row col-md-offset-1 col-md-10">
