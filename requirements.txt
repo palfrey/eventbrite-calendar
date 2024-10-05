@@ -12,11 +12,11 @@ flask==3.0.3
     #   flask-bootstrap
 flask-bootstrap==3.3.7.1
     # via -r requirements.in
-gunicorn==19.9.0
+gunicorn==23.0.0
     # via -r requirements.in
 icalendar==4.0.2
     # via -r requirements.in
-idna==2.7
+idna==3.10
     # via yarl
 iniconfig==2.0.0
     # via pytest
@@ -31,7 +31,9 @@ markupsafe==2.1.5
 multidict==4.3.1
     # via yarl
 packaging==24.1
-    # via pytest
+    # via
+    #   gunicorn
+    #   pytest
 pluggy==1.5.0
     # via pytest
 pytest==8.3.3
