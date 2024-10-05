@@ -20,7 +20,7 @@ flask==3.0.3
     #   flask-bootstrap
 flask-bootstrap==3.3.7.1
     # via -r requirements.in
-gunicorn==19.9.0
+gunicorn==22.0.0
     # via -r requirements.in
 icalendar==4.0.2
     # via -r requirements.in
@@ -38,6 +38,8 @@ more-itertools==4.2.0
     # via pytest
 multidict==4.3.1
     # via yarl
+packaging==24.1
+    # via gunicorn
 pip-tools==2.0.2
     # via -r requirements.in
 pluggy==0.6.0
@@ -54,8 +56,6 @@ pytz==2018.5
     #   icalendar
 pyyaml==6.0.2
     # via vcrpy
-setuptools==75.1.0
-    # via pytest
 six==1.11.0
     # via
     #   more-itertools
