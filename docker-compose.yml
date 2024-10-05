@@ -1,0 +1,12 @@
+---
+services:
+  web:
+    build: .
+    ports:
+    - 5000:5000
+    volumes:
+    - .:/work
+    restart: on-failure
+    environment:
+      EVENTBRITE_API_KEY: dummy-key
+      EVENTBRITE_OAUTH_SECRET: dummy-secret

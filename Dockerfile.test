@@ -1,0 +1,5 @@
+FROM debian:stable-20240926-slim
+RUN apt-get update
+RUN apt install -y wget coreutils
+RUN wget https://raw.githubusercontent.com/vishnubob/wait-for-it/81b1373f17855a4dc21156cfe1694c31d7d1792e/wait-for-it.sh && chmod +x wait-for-it.sh
+CMD ./wait-for-it.sh -h web -p 5000 -t 30

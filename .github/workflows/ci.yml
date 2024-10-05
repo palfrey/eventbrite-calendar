@@ -25,3 +25,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -vvv
+    - name: Integration test
+      env:
+        COMPOSE_FILE: docker-compose.yml:docker-compose.tests.yml
+      run: docker compose up --build --exit-code-from tests
