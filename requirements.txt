@@ -24,7 +24,7 @@ gunicorn==19.9.0
     # via -r requirements.in
 icalendar==4.0.2
     # via -r requirements.in
-idna==2.7
+idna==3.7
     # via yarl
 itsdangerous==2.2.0
     # via flask
@@ -54,8 +54,6 @@ pytz==2018.5
     #   icalendar
 pyyaml==6.0.2
     # via vcrpy
-setuptools==75.1.0
-    # via pytest
 six==1.11.0
     # via
     #   more-itertools
