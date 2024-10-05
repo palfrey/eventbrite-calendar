@@ -25,7 +25,7 @@ def test_initial_page(client):
 def test_oauth_redirect(client):
     rv = client.get('/?code=bar')
     assert rv.status_code == 302
-    assert rv.headers["location"] == "http://localhost/oauth/bar"
+    assert rv.headers["location"] == "/oauth/bar"
 
 def scrub_request_oauth(request):
     if request.path == '/oauth/token':
@@ -41,7 +41,7 @@ def scrub_request_oauth(request):
 def test_oauth(client):
     rv = client.get(f'/oauth/{os.environ["EVENTBRITE_OAUTH_CODE"]}')
     assert rv.status_code == 302
-    assert rv.headers["location"].startswith("http://localhost/calendar/")
+    assert rv.headers["location"].startswith("/calendar/")
 
     rv = client.get(rv.headers["location"])
     assert rv.status_code == 200

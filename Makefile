@@ -10,3 +10,6 @@ sync: .venv/bin/activate requirements.txt
 
 run: sync
 	./uv run python main.py
+
+test: sync
+	./uv run pytest -vvv
