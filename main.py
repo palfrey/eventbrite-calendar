@@ -24,7 +24,7 @@ def index():
 	return render_template('index.html', eventbrite_api_key = eventbrite_api_key)
 
 @app.route("/oauth/<code>")
-def oauth(code):
+def oauth(code: str):
 	url = "https://www.eventbrite.com/oauth/token"
 	data = urlopen(url, urlencode({
 		"code": code,
@@ -35,7 +35,7 @@ def oauth(code):
 	return redirect("/calendar/%s"%values["access_token"])
 
 @app.route('/calendar/<code>')
-def calendar(code):
+def calendar(code: str):
 	url = "https://www.eventbriteapi.com/v3/users/me/orders/?expand=event,event.venue"
 	data = urlopen(Request(url = url, headers= {"Authorization": "Bearer %s"%code})).read()
 	data = json.loads(data)
@@ -53,7 +53,8 @@ def calendar(code):
 			event = Event()
 			event.add('summary', event_data["name"]["text"])
 			event.add('description', event_data["description"]["text"])
-			event.add('location', event_data["venue"]["address"]["localized_address_display"])
+			if event_data["venue"] is not None:
+				event.add('location', event_data.get("venue",{}).get("address", {}).get("localized_address_display"))
 			dformat = "%Y-%m-%dT%H:%M:%SZ"
 			utc = pytz.timezone("UTC")
 			event.add('dtstart', datetime.strptime(event_data["start"]["utc"], dformat).replace(tzinfo=utc))

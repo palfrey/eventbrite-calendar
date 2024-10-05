@@ -3,3 +3,4 @@ venv
 env.sh
 .vscode/
 .pytest_cache/
+.downloads/
