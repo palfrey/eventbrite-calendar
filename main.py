@@ -14,6 +14,7 @@ Bootstrap(app)
 app.config['BOOTSTRAP_USE_MINIFIED'] = True
 app.config['BOOTSTRAP_USE_CDN'] = True
 app.config['BOOTSTRAP_FONTAWESOME'] = True
+app.config["PREFERRED_URL_SCHEME"] = os.environ.get("PREFERRED_URL_SCHEME", "http")
 
 eventbrite_api_key = os.environ["EVENTBRITE_API_KEY"]
 
