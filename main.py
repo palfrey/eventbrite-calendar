@@ -22,7 +22,7 @@ eventbrite_api_key = os.environ["EVENTBRITE_API_KEY"]
 def index():
 	if "code" in request.args:
 		return redirect("/oauth/%s" % request.args["code"])
-	return render_template('index.html', eventbrite_api_key = eventbrite_api_key)
+	return render_template('index.html', eventbrite_api_key = eventbrite_api_key, PREFERRED_URL_SCHEME=app.config["PREFERRED_URL_SCHEME"])
 
 @app.route("/oauth/<code>")
 def oauth(code: str):
