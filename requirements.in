@@ -4,6 +4,5 @@ gunicorn >= 19.5 # To fix https://nvd.nist.gov/vuln/detail/CVE-2018-1000164
 icalendar
 pytz
 
-pip-tools
 pytest
 vcrpy
