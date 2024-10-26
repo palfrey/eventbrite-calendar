@@ -52,7 +52,7 @@ vcrpy==6.0.1
     # via -r requirements.in
 visitor==0.1.3
     # via flask-bootstrap
-werkzeug==3.0.4
+werkzeug==3.0.6
     # via flask
 wrapt==1.16.0
     # via vcrpy
